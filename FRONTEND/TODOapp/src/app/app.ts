@@ -16,36 +16,36 @@ export class App {
   arrayDeTarefas = signal<Tarefa[]>([]);
   apiURL: string;
   constructor(private http: HttpClient) {
-    this.apiURL = 'http://localhost:3000';
+    this.apiURL = 'https://apitarefasgustavo257217ronaldo255532-coral-eta.vercel.app/';
     this.READ_tarefas();
   }
 
   CREATE_tarefa(descricaoNovaTarefa: string) {
     var novaTarefa = new Tarefa(descricaoNovaTarefa, false);
     this.http.post<Tarefa>(`${this.apiURL}/api/post`, novaTarefa).subscribe(
-      (resultado : any) => { console.log(resultado); this.READ_tarefas(); });
-    
+      (resultado: any) => { console.log(resultado); this.READ_tarefas(); });
+
   }
 
 
   READ_tarefas() {
     this.http.get<Tarefa[]>(`${this.apiURL}/api/getAll`).subscribe(
-      (resultado : any) => this.arrayDeTarefas.set(resultado));
+      (resultado: any) => this.arrayDeTarefas.set(resultado));
   }
 
   DELETE_tarefa(tarefaAserRemovida: Tarefa) {
     var indice = this.arrayDeTarefas().indexOf(tarefaAserRemovida);
- var id = this.arrayDeTarefas()[indice]._id;
- this.http.delete<Tarefa>(`${this.apiURL}/api/delete/${id}`).subscribe(
- (resultado : any) => { console.log(resultado); this.READ_tarefas(); });
+    var id = this.arrayDeTarefas()[indice]._id;
+    this.http.delete<Tarefa>(`${this.apiURL}/api/delete/${id}`).subscribe(
+      (resultado: any) => { console.log(resultado); this.READ_tarefas(); });
   }
 
   UPDATE_tarefa(tarefaAserModificada: Tarefa) {
     var indice = this.arrayDeTarefas().indexOf(tarefaAserModificada);
     var id = this.arrayDeTarefas()[indice]._id;
     this.http.patch<Tarefa>(`${this.apiURL}/api/update/${id}`,
-    tarefaAserModificada).subscribe(
-    (resultado : any) => { console.log(resultado); this.READ_tarefas(); });
-    }
-   
+      tarefaAserModificada).subscribe(
+        (resultado: any) => { console.log(resultado); this.READ_tarefas(); });
+  }
+
 }
