@@ -13,6 +13,8 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.json());
+app.listen(3000);
+module.exports = app;
 const PORT = process.env.PORT || 3000;
 const routes = require('./routes/routes');
 app.use('/api', routes);
