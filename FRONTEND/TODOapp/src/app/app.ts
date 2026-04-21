@@ -16,7 +16,7 @@ export class App {
   arrayDeTarefas = signal<Tarefa[]>([]);
   apiURL: string;
   constructor(private http: HttpClient) {
-    this.apiURL = 'https://apitarefasgustavo257217ronaldo255532-coral-eta.vercel.app/';
+    this.apiURL = 'https://apitarefasgustavo257217ronaldo255532-coral-eta.vercel.app';
     this.READ_tarefas();
   }
 
